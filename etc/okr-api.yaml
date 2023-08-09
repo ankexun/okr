@@ -1,0 +1,9 @@
+Name: okr-api
+Host: 0.0.0.0
+Port: 8888
+
+Auth:
+  # 禁止修改
+  AccessSecret: okr@299792.458
+  # 单位：小时（hr）
+  AccessExpire: 168

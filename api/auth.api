@@ -1,0 +1,56 @@
+//用户登录功能
+type LoginUser {
+    Id              int64       `json:"id"`
+    UserName        string      `json:"userName"`
+    RealName        string      `json:"realName"`
+    Avatar          string      `json:"avatar"`
+    IsAdmin         int64       `json:"isAdmin"`
+    Roles           string      `json:"roles"`
+    Token           string      `json:"token"`
+}
+
+type (
+    LoginReq {
+        UserName    string      `json:"userName"`
+        Password    string      `json:"password"`
+    }
+    LoginResp {
+        BaseMsg
+        UserInfo    LoginUser   `json:"userInfo"`
+    }
+
+    UserInfoReq {
+        
+    }
+    UserInfoResp {
+        BaseMsg
+        UserInfo    LoginUser        `json:"userInfo"`
+    }
+
+)
+
+//用户登录
+@server(
+	prefix: okr/v3
+	group: login
+	// jwt: Auth
+)
+
+service okr-api {
+    @doc "用户登录"
+    @handler LoginHandler
+    post /login(LoginReq) returns (LoginResp)
+}
+
+// 登录用户信息
+@server(
+	prefix: okr/v3
+	group: login
+	jwt: Auth
+)
+
+service okr-api {
+    @doc "用户信息"
+    @handler UserInfoHandler
+    get /userInfo(UserInfoReq) returns (UserInfoResp)
+}

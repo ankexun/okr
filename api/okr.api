@@ -1,0 +1,28 @@
+syntax = "v3"
+
+info(
+	title: "OKR"
+	desc: "OKR工具第三版"
+	author: "kevin"
+	email: "wqw@ankexun.com"
+	version: "v3"
+)
+
+import(
+	"object.api"
+	"plan.api"
+	"kanban.api"
+	"auth.api"
+)
+
+// base message
+type BaseMsg {
+	Code int    `json:"code"`
+	Msg  string `json:"msg"`
+}
+
+// page params
+type Page {
+	CurrentPage int64 `form:"currentPage,default=1"`
+	PageSize    int64 `form:"pageSize,default=10"`
+}
